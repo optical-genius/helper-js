@@ -711,22 +711,22 @@ function pairRows(rows1, rows2, key1, key2) {
 // todo change args in next version
 
 function depthFirstSearch(obj, handler) {
-  var childrenKey = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'children';
+  var childrenKey = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'havenote';
   var reverse = arguments.length > 3 ? arguments[3] : undefined;
   var rootChildren = isArray(obj) ? obj : [obj]; //
 
   class StopException {}
 
-  var func = (children, parent, parentPath) => {
+  var func = (havenote, parent, parentPath) => {
     if (reverse) {
-      children = children.slice();
-      children.reverse();
+      havenote = havenote.slice();
+      havenote.reverse();
     }
 
-    var len = children.length;
+    var len = havenote.length;
 
     for (var i = 0; i < len; i++) {
-      var item = children[i];
+      var item = havenote[i];
       var index = reverse ? len - i - 1 : i;
       var path = parentPath ? [...parentPath, index] : []; // todo change args in next version
 
@@ -735,7 +735,7 @@ function depthFirstSearch(obj, handler) {
       if (r === false) {
         // stop
         throw new StopException();
-      } else if (r === 'skip children') {
+      } else if (r === 'skip havenote') {
         continue;
       } else if (r === 'skip siblings') {
         break;
@@ -759,7 +759,7 @@ var walkTreeData = depthFirstSearch;
 class TreeData {
   // data = null;
   constructor(data) {
-    this.childrenKey = 'children';
+    this.childrenKey = 'havenote';
     this.data = data;
   }
 

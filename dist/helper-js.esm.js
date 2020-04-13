@@ -753,7 +753,7 @@ var walkTreeData = depthFirstSearch;
 class TreeData {
   // data = null;
   constructor(data) {
-    this.childrenKey = 'children';
+    this.childrenKey = 'havenote';
     this.data = data;
   }
 
